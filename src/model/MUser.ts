@@ -18,6 +18,11 @@ const UserSchema: Schema = new Schema({
     isVerified: { type: Boolean, default: false },
     isDeleted: { type: Boolean, default: false },
     isSuspended: { type: Boolean, default: false },
+    addressIds: [{
+        type: Schema.Types.ObjectId,
+        ref: "Address",
+        required: false
+    }],
     lastLogin: { type: String, default: null },
     device: { type: String, default: null },
 });
@@ -30,7 +35,7 @@ UserSchema.pre<IUserDocument>("save", async function (next) {
         this.password = await hashPassword(this.password);
         next();
 
-    } catch (error:any) {
+    } catch (error: any) {
         next(error);
 
     }

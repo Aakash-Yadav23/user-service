@@ -1,0 +1,10 @@
+// interfaces/IAddress.ts
+export interface IAddress {
+    _id?: string;
+    street: string;
+    city: string;
+    state: string;
+    zipCode: string;
+    country: string;
+    userId: string;
+}

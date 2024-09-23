@@ -22,3 +22,12 @@ export const generateToken = (userId: string): string => {
     const token = jwt.sign({ id: userId }, secretKey, { expiresIn: '1h' });
     return token;
 };
+
+
+
+
+export const verifyToken=(token:string)=>{
+
+    return jwt.verify(token,getConfig().JWT_SECRET)
+
+}

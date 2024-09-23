@@ -1,11 +1,17 @@
+import { addressResolves } from "./RAddress";
 import { userResolvers } from "./RUser";
 
 export const resolvers = {
     Query: {
-        ...userResolvers.Query
+        ...userResolvers.Query,
+        ...addressResolves.Query
+
     },
+
     Mutation: {
-        ...userResolvers.Mutation
+        ...userResolvers.Mutation,
+        ...addressResolves.Mutation
+
 
     }
 

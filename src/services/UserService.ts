@@ -93,7 +93,7 @@ export class UserService {
 
 
             const isCorrectPassword = await comparePassword(value.password, isUserExistsWithMailOrNot.password)
-
+            console.log("isCorrectPassword", isCorrectPassword)
             if (!isCorrectPassword) {
                 throw new CustomError("Invalid Credentials", httpStatusCode.UNAUTHORIZED);
             }

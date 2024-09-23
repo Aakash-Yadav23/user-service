@@ -7,6 +7,7 @@ export interface IUser{
     dateOfBirth:string;
     age:string;
     profilePic?:string;
+    addressIds?:string[]
     otp?:string;
     otpExpireDate?:string;
     isVerified:boolean;

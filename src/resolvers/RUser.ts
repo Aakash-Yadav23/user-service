@@ -4,7 +4,6 @@ import { UserService } from "../services/UserService"
 import { ApolloError } from "apollo-server";
 import { CustomError } from "../handlers/CustomError";
 
-const userService = new UserService();
 
 export const userResolvers = {
 
@@ -32,6 +31,8 @@ export const userResolvers = {
     Mutation: {
         registerUser: async (_: any, { input }: { input: Partial<IUser> }, context: any) => {
             try {
+                const userService = new UserService();
+
                 const userAgent = context.userAgent;
 
 
@@ -55,6 +56,9 @@ export const userResolvers = {
         },
         loginUser: async (_: any, { input }: { input: Partial<IUser> }, context: any) => {
             try {
+                const userService = new UserService();
+
+
                 const token = await userService.loginUser(input);
                 context.res.cookie('token', token, {
                     httpOnly: true,
