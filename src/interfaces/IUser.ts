@@ -1,14 +1,17 @@
 export interface IUser{
-    id:string;
+    id?:string;
     firstName:string;
     lastName:string;
+    password:string;
     email:string;
+    dateOfBirth:string;
+    age:string;
     profilePic?:string;
     otp?:string;
-    otpExpireDate?:Date;
+    otpExpireDate?:string;
     isVerified:boolean;
-    isDelted:boolean;
+    isDeleted:boolean;
     isSuspended:boolean;
-    lastLogin:Date;
+    lastLogin?:string;
     device:string;
 }
