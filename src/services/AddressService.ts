@@ -10,7 +10,7 @@ export class AddressService {
 
     private addressRepository = new AddressRepository();
 
-    public CreateAddress = async (addressData: IAddress) => {
+    public CreateAddress = async (addressData: Partial<IAddress>) => {
 
 
         const { value, error } = createAddressDto.validate(addressData);
@@ -31,6 +31,8 @@ export class AddressService {
             ...value
         }
 
+        console.log("Create This Address",createThisAddress)
+
         const addressCreated = await this.addressRepository.createAddress(createThisAddress)
 
         const updateUserAddressIds: Partial<IUser> = {
@@ -38,7 +40,10 @@ export class AddressService {
             id: findUser.id
         };
 
-        await new UserRepository().updateUser(updateUserAddressIds)
+       const updatedUser= await new UserRepository().updateUser(updateUserAddressIds)
+
+       console.log("updatedUser",updatedUser)
+
 
 
 

@@ -21,7 +21,7 @@ export const addressSchema = gql`
 
   type Query {
     getAddress(id: ID!): Address
-    getAddressesByUser(userId: ID!): [Address]
+    getAddressesByUser: [Address]
   }
 
   type Mutation {

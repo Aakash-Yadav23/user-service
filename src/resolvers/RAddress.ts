@@ -3,6 +3,7 @@ import { IAddress } from "../interfaces/IAddress";
 import { AddressService } from "../services/AddressService";
 import { CustomError } from "../handlers/CustomError";
 import { AuthMiddleware } from "../middleware/AuthMiddleware";
+import { UserService } from "../services/UserService";
 
 
 
@@ -21,12 +22,13 @@ export const addressResolves = {
         },
 
         getAddressesByUser: async (_: any, context: any) => {
-            AuthMiddleware(context)
+            const userId = AuthMiddleware(context)
+            console.log("UserId", userId)
+            const userService = new UserService();
 
-            return [
-                { id: "1", firstName: "Akash Kumar" },
-                { id: "2", firstName: "John Doe" }
-            ];
+            return await userService.GetMe(userId)
+
+
         }
 
     },
@@ -44,8 +46,11 @@ export const addressResolves = {
 
                 input = {
                     ...input,
+                    userId:userId!
                 }
 
+
+            return addressService.CreateAddress(input)
 
             } catch (error: any) {
                 if (error instanceof CustomError) {

@@ -3,6 +3,7 @@ import { IUser } from "../interfaces/IUser";
 import { UserService } from "../services/UserService"
 import { ApolloError } from "apollo-server";
 import { CustomError } from "../handlers/CustomError";
+import { AuthMiddleware } from "../middleware/AuthMiddleware";
 
 
 export const userResolvers = {
@@ -10,12 +11,19 @@ export const userResolvers = {
     Query: {
 
         getUser: async (_: any, { id }: { id: string }) => {
-
-
             return {
                 id,
                 firstName: "Akash Kumar"
             }
+
+        },
+        getMe: async (_: any, context: any) => {
+            const userId = AuthMiddleware(context)
+            console.log("UserId", userId)
+            const userService = new UserService();
+
+            return await userService.GetMe(userId)
+
 
         },
 

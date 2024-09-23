@@ -28,20 +28,5 @@ const UserSchema: Schema = new Schema({
 });
 
 
-
-UserSchema.pre<IUserDocument>("save", async function (next) {
-    try {
-
-        this.password = await hashPassword(this.password);
-        next();
-
-    } catch (error: any) {
-        next(error);
-
-    }
-});
-
-
-
 export const UserModel = mongoose.model<IUserDocument>("User", UserSchema);
 

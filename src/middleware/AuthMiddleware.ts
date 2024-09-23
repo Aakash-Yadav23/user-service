@@ -10,13 +10,19 @@ export const AuthMiddleware = (context: any) => {
         throw new ApolloError("Unauthorized: No token provided", "UNAUTHORIZED");
     }
 
-    const user = verifyToken(token); 
 
-    console.log("User",user)
 
-    if (!user) {
+    let user;
+    try {
+        user = verifyToken(token);
+    } catch (error) {
         throw new ApolloError("Unauthorized: Invalid token", "UNAUTHORIZED");
     }
 
-    return user;
+
+    if (!user.id) {
+        throw new ApolloError("Unauthorized: Invalid token", "UNAUTHORIZED");
+    }
+
+    return user.id;
 };

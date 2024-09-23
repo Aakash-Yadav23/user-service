@@ -46,7 +46,11 @@ export class UserRepository {
 
 
     public getUserById = async (id: string): Promise<IUser | null> => {
-        return await UserModel.findById(id);
+        return await UserModel.findById(id).populate({
+            path:"addressIds",
+            select: 'street city state zipCode country', 
+
+        });
     }
 
 
@@ -71,6 +75,7 @@ export class UserRepository {
         if (userData.isVerified) user.isVerified = userData.isVerified;
         if (userData.email) user.email = userData.email;
         if (userData.password) user.password = userData.password;
+        if (userData.addressIds) user.addressIds = userData.addressIds;
 
 
         await user.save();

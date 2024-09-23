@@ -1,5 +1,5 @@
 import bcrypt from "bcrypt";
-import jwt from "jsonwebtoken";
+import jwt, { JwtPayload } from "jsonwebtoken";
 import getConfig from "../config/Config";
 
 
@@ -28,6 +28,6 @@ export const generateToken = (userId: string): string => {
 
 export const verifyToken=(token:string)=>{
 
-    return jwt.verify(token,getConfig().JWT_SECRET)
+    return jwt.verify(token,getConfig().JWT_SECRET) as JwtPayload;
 
 }

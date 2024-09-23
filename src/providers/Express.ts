@@ -51,10 +51,8 @@ export class ExpressApp {
 
     this.express.use('/graphql', expressMiddleware(this.server, {
       context: async ({ req, res }) => {
-        console.log("HEADERS", req.headers)
 
         const token = req.headers.authorization ? req.headers.authorization.split(' ')[1] : null;
-        console.log("Token", token)
         return {
           req,
           res,
