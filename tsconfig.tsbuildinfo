@@ -1,0 +1,1 @@
+{"root":["./src/index.ts","./src/config/Config.ts","./src/interfaces/IAddress.ts","./src/interfaces/IEnv.ts","./src/interfaces/IProduct.ts","./src/interfaces/IUser.ts","./src/providers/App.ts","./src/providers/Express.ts","./src/schemas/MUser.ts"],"version":"5.6.2"}
