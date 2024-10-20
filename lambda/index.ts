@@ -11,27 +11,29 @@ exports.handler = async (event: APIGatewayProxyEvent): Promise<APIGatewayProxyRe
         return await UserRoutes(event);
 
     } catch (error: any) {
-        console.error("Error: ", error.message);
-
+        
         if (error instanceof CustomError) {
+            console.error("CustomError: ", error);
             return {
                 statusCode: error.statusCode,
                 headers: {
                     "Content-Type": "application/json"
                 },
                 body: JSON.stringify({
-                    message: "Internal server error",
-                    error: error.message
+                    message: error.message,
+                    error: error.details
                 }),
             };
         }
+        console.error("Error: ", error);
+
         return {
             statusCode: 500,
             headers: {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
-                message: "Internal server error",
+                message: error.message,
                 error: error.message
             }),
         };

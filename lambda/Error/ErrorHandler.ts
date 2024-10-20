@@ -5,8 +5,8 @@ export class CustomError extends Error{
 
     constructor(message:string,statusCode?:number,details?:string){
         super(message);
-        this.statusCode=this.statusCode||500;
-        this.details=this.details;
+        this.statusCode=statusCode||500;
+        this.details=details;
 
     }
 }
