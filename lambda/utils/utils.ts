@@ -71,7 +71,9 @@ export const SuccessReponse = (statusCode?: number, data?: any, message?: string
     return {
         statusCode: statusCode || 200,
         headers: {
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "*", 
+            "Access-Control-Allow-Credentials": true, 
         },
         body: JSON.stringify({
             message: message || "Success",
@@ -85,7 +87,9 @@ export const ErrorReponse = (message: string, statusCode?: number, error?: any) 
     return {
         statusCode: statusCode,
         headers: {
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "*", 
+            "Access-Control-Allow-Credentials": true, 
         },
         body: JSON.stringify({
             message: message || "Internal server error",

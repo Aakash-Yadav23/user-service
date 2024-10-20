@@ -16,6 +16,10 @@ export const UserRoutes = async (event: APIGatewayProxyEvent): Promise<APIGatewa
             if (!token) {
                 return {
                     statusCode: 401,
+                    headers:{
+                        "Access-Control-Allow-Origin": "*", 
+                        "Access-Control-Allow-Credentials": true, 
+                    },
                     body: JSON.stringify({ message: 'Unauthorized, missing token' })
                 };
             }
@@ -25,6 +29,10 @@ export const UserRoutes = async (event: APIGatewayProxyEvent): Promise<APIGatewa
             if (!decoded.authenticated) {
                 return {
                     statusCode: 401,
+                    headers:{
+                        "Access-Control-Allow-Origin": "*", 
+                        "Access-Control-Allow-Credentials": true, 
+                    },
                     body: JSON.stringify({ message: 'Unauthorized, invalid token' })
                 };
             }
@@ -63,7 +71,9 @@ export const UserRoutes = async (event: APIGatewayProxyEvent): Promise<APIGatewa
         return {
             statusCode: 404,
             headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                "Access-Control-Allow-Origin": "*", 
+                "Access-Control-Allow-Credentials": true, 
             },
             body: JSON.stringify({
                 message: "Invalid Path",

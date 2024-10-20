@@ -17,7 +17,9 @@ exports.handler = async (event: APIGatewayProxyEvent): Promise<APIGatewayProxyRe
             return {
                 statusCode: error.statusCode,
                 headers: {
-                    "Content-Type": "application/json"
+                    "Content-Type": "application/json",
+                    "Access-Control-Allow-Origin": "*", 
+                    "Access-Control-Allow-Credentials": true, 
                 },
                 body: JSON.stringify({
                     message: error.message,
@@ -30,7 +32,9 @@ exports.handler = async (event: APIGatewayProxyEvent): Promise<APIGatewayProxyRe
         return {
             statusCode: 500,
             headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                "Access-Control-Allow-Origin": "*", 
+                "Access-Control-Allow-Credentials": true, 
             },
             body: JSON.stringify({
                 message: error.message,
